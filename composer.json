@@ -1,6 +1,6 @@
 {
     "name": "wangchengtao/tianque",
-    "description": "随行付开放平台 SDK",
+    "description": "天阙开放平台 SDK",
     "type": "library",
     "authors": [
         {
@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": ">=7.4",
         "guzzlehttp/guzzle": "^7.5",
         "symfony/var-dumper": "~5.4"
     },
