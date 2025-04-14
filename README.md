@@ -3,9 +3,17 @@
 ## Install
 `composer require wangchengtao/tianque`
 
+## Version Guidance
+
+| Version | PHP Version |
+|---------|-------------|
+| 7.x     | \>=7.4,<8.0 |
+| main    | \>=8.0      |
+
 ## Usage
 - Notes: More Usages please refer to test cases
 
+图片上传
 ```php
 
 use Summer\TianQue\Kernel\AopClient;

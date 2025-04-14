@@ -2,7 +2,6 @@
 
 namespace Summer\TianQue\Request;
 
-use Summer\TianQue\Kernel\Attribute\JsonIgnore;
 use Summer\TianQue\Request\Model\SplitAccount;
 
 class CommitApplyRequest extends Request
@@ -11,7 +10,6 @@ class CommitApplyRequest extends Request
 
     const SPLIT = '2'; // 分账
 
-    #[JsonIgnore]
     protected string $uri = '/merchant/specialApplication/commitApply';
 
     protected string $applicationType;

@@ -2,11 +2,9 @@
 
 namespace Summer\TianQue\Request;
 
-use Summer\TianQue\Kernel\Attribute\JsonIgnore;
 
 class QueryApplyInfoRequest extends Request
 {
-    #[JsonIgnore]
     protected string $uri = '/merchant/specialApplication/queryApplyInfo';
 
     /**

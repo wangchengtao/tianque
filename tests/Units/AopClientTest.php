@@ -1,8 +1,7 @@
 <?php
 
-namespace Summer\TianQue\Tests;
+namespace Summer\TianQue\Tests\Units;
 
-use PHPUnit\Framework\Attributes\Test;
 use Summer\TianQue\Kernel\AopClient;
 use Summer\TianQue\Kernel\Config;
 use Summer\TianQue\Kernel\Support\ApiResponse;
@@ -12,6 +11,7 @@ use Summer\TianQue\Request\QueryApplyInfoRequest;
 use Summer\TianQue\Request\UploadRequest;
 use Summer\TianQue\Response\QueryApplyInfoResponse;
 use Summer\TianQue\Response\Response;
+use Summer\TianQue\Tests\TestCase;
 
 class AopClientTest extends TestCase
 {
@@ -51,7 +51,9 @@ MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCOmsrFtFPTnEzfpJ/hDl5RODBxw4i9Ex3NmmG/N7A1
     }
 
 
-    #[Test]
+    /**
+     * @test
+     */
     public function commitApply()
     {
         $request = new CommitApplyRequest();
@@ -79,7 +81,9 @@ MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCOmsrFtFPTnEzfpJ/hDl5RODBxw4i9Ex3NmmG/N7A1
         $this->assertInstanceOf(ApiResponse::class, $res);
     }
 
-    #[Test]
+    /**
+     * @test
+     */
     public function queryApplyInfo()
     {
         $request = new QueryApplyInfoRequest();
@@ -91,7 +95,9 @@ MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCOmsrFtFPTnEzfpJ/hDl5RODBxw4i9Ex3NmmG/N7A1
         $this->assertNotEquals(Response::SUCCESS, $response->getBizCode(), '申请单号错误');
     }
 
-    #[Test]
+    /**
+     * @test
+     */
     public function upload()
     {
         $request = new UploadRequest();

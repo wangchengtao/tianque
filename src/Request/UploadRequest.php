@@ -2,11 +2,9 @@
 
 namespace Summer\TianQue\Request;
 
-use Summer\TianQue\Kernel\Attribute\JsonIgnore;
 
 class UploadRequest extends Request
 {
-    #[JsonIgnore]
     protected string $uri = '/merchant/uploadPicture';
 
     protected string $orgId;

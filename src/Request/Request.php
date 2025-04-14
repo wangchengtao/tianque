@@ -3,12 +3,10 @@
 namespace Summer\TianQue\Request;
 
 use ReflectionClass;
-use Summer\TianQue\Kernel\Attribute\JsonIgnore;
 use Summer\TianQue\Kernel\Contract\Arrayable;
 
 abstract class Request implements Arrayable
 {
-    #[JsonIgnore]
     protected string $method = 'POST';
 
     protected string $uri;
@@ -36,10 +34,6 @@ abstract class Request implements Arrayable
         $reflection = new ReflectionClass($this);
 
         foreach ($reflection->getProperties() as $property) {
-            if ($property->getAttributes(JsonIgnore::class)) {
-                continue;
-            }
-
             $propertyName = $property->getName();
             $propertyValue = $property->getValue($this);
 
