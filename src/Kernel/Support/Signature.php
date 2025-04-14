@@ -13,7 +13,16 @@ class Signature
         unset($params['sign']);
         ksort($params);
 
-        return http_build_query($params);
+        $str = '';
+        foreach ($params as $key => $value) {
+            if (is_array($value)) {
+                $str .= $key . '=' . json_encode($value, 320) . '&';
+            } else {
+                $str .= $key . '=' . $value . '&';
+            }
+        }
+
+        return rtrim($str, '&');
     }
 
     public static function sign(array $params, $signType, string $privateKey): string

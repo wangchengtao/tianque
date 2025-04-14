@@ -6,7 +6,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use Summer\TianQue\Kernel\Contract\RandomGenerator;
-use Summer\TianQue\Kernel\Enum\RespCode;
 use Summer\TianQue\Kernel\Exception\TianQueException;
 use Summer\TianQue\Kernel\Support\ApiRequest;
 use Summer\TianQue\Kernel\Support\ApiResponse;
@@ -14,6 +13,7 @@ use Summer\TianQue\Kernel\Support\DefaultRandomGenerator;
 use Summer\TianQue\Kernel\Support\Signature;
 use Summer\TianQue\Request\Request;
 use Summer\TianQue\Request\UploadRequest;
+use Summer\TianQue\Response\Response;
 use Summer\TianQue\Response\UploadResponse;
 
 class AopClient
@@ -47,11 +47,11 @@ class AopClient
         $apiRequest->setSignType($this->config->getSignType());
         $apiRequest->setTimestamp();
         $apiRequest->setReqData($request);
-        $apiRequest->setSign(Signature::sign($apiRequest->toArray(),$apiRequest->getSignType(), $this->config->getPrivateKey()));
+        $apiRequest->setSign(Signature::sign($apiRequest->toArray(), $apiRequest->getSignType(), $this->config->getPrivateKey()));
 
         // 发送请求
         $res = $this->request($request->getMethod(), $request->getUri(), [
-            RequestOptions::JSON => $apiRequest->toArray(),
+            RequestOptions::JSON => $apiRequest->toArray(true),
         ]);
 
         // 验签 && 处理结果
@@ -71,13 +71,13 @@ class AopClient
         $apiResponse = new ApiResponse($body);
 
         // 业务处理
-        if ($apiResponse->getCode() != RespCode::SUCCESS) {
+        if ($apiResponse->getCode() != ApiResponse::SUCCESS) {
             throw new TianQueException($apiResponse->getMsg());
         }
 
         $uploadRes = new UploadResponse($apiResponse->getRespData());
 
-        if ($uploadRes->getBizCode() != RespCode::SUCCESS) {
+        if ($uploadRes->getBizCode() != Response::SUCCESS) {
             throw new TianQueException($uploadRes->getBizMsg());
         }
 
@@ -108,14 +108,14 @@ class AopClient
     {
         $apiResponse = new ApiResponse($body);
 
+        // 业务处理
+        if ($apiResponse->getCode() != ApiResponse::SUCCESS) {
+            throw new TianQueException($apiResponse->getMsg());
+        }
+
         // 验签
         if (! Signature::verify($body, $apiResponse->getSign(), $apiResponse->getSignType(), $this->config->getPublicKey()->getKey())) {
             throw new TianQueException('签名验证失败');
-        }
-
-        // 业务处理
-        if ($apiResponse->getCode() != RespCode::SUCCESS) {
-            throw new TianQueException($apiResponse->getMsg());
         }
 
         return $apiResponse;

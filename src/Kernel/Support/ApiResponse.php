@@ -9,6 +9,9 @@ class ApiResponse
 {
     use Constructor;
 
+    const SUCCESS = '0000';
+
+
     protected string $code;
 
     protected string $msg;

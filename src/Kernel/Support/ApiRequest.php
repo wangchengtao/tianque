@@ -4,7 +4,7 @@ namespace Summer\TianQue\Kernel\Support;
 
 use Summer\TianQue\Kernel\Contract\Arrayable;
 
-class ApiRequest implements Arrayable
+class ApiRequest
 {
     protected string $orgId;
 
@@ -78,16 +78,21 @@ class ApiRequest implements Arrayable
         $this->sign = $sign;
     }
 
-    public function toArray(): array
+    public function toArray(bool $withSign = false): array
     {
-        return [
+        $default = [
             'orgId' => $this->orgId,
             'reqId' => $this->reqId,
             'reqData' => $this->reqData->toArray(),
             'timestamp' => $this->timestamp,
             'signType' => $this->signType,
             'version' => $this->version,
-            'sign' => $this->sign,
         ];
+
+        if ($withSign) {
+            $default['sign'] = $this->sign;
+        }
+
+        return $default;
     }
 }

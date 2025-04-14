@@ -8,9 +8,12 @@ use Summer\TianQue\Kernel\Config;
 use Summer\TianQue\Kernel\Support\ApiResponse;
 use Summer\TianQue\Request\CommitApplyRequest;
 use Summer\TianQue\Request\Model\SplitAccount;
+use Summer\TianQue\Request\QueryApplyInfoRequest;
 use Summer\TianQue\Request\UploadRequest;
+use Summer\TianQue\Response\QueryApplyInfoResponse;
+use Summer\TianQue\Response\Response;
 
-class AopClientRequestTest extends TestCase
+class AopClientTest extends TestCase
 {
     public Config $config;
 
@@ -71,10 +74,21 @@ MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCOmsrFtFPTnEzfpJ/hDl5RODBxw4i9Ex3NmmG/N7A1
         $accounts[] = $splitAccount2;
 
         $request->setSplitAccounts($accounts);
-
         $res = $this->client->execute($request);
 
         $this->assertInstanceOf(ApiResponse::class, $res);
+    }
+
+    #[Test]
+    public function queryApplyInfo()
+    {
+        $request = new QueryApplyInfoRequest();
+        $request->setId('123');
+
+        $res = $this->client->execute($request);
+        $response = new QueryApplyInfoResponse($res->getRespData());
+
+        $this->assertNotEquals(Response::SUCCESS, $response->getBizCode(), '申请单号错误');
     }
 
     #[Test]
@@ -87,7 +101,7 @@ MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCOmsrFtFPTnEzfpJ/hDl5RODBxw4i9Ex3NmmG/N7A1
 
         $res = $this->client->upload($request);
 
-        $this->assertEquals('0000', $res->getBizCode());
+        $this->assertEquals(Response::SUCCESS, $res->getBizCode());
 
     }
 
