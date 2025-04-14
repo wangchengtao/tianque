@@ -25,6 +25,16 @@ class Config
         $this->signType = $signType;
     }
 
+    public static function fromArray(array $config): Config
+    {
+        return new self(
+            $config['domain'],
+            $config['org_id'],
+            $config['private_key'],
+            $config['public_key'],
+            $config['sign_type'] ?? 'RSA'
+        );
+    }
 
     /**
      * @return string

@@ -17,6 +17,7 @@
 ```php
 
 use Summer\TianQue\Kernel\AopClient;
+use Summer\TianQue\Kernel\AopFactory;
 use Summer\TianQue\Kernel\Config;
 
 $config = new Config(
@@ -27,6 +28,15 @@ $config = new Config(
 );
 
 $client = new AopClient($config);
+
+// or get client by factory
+//$config = [
+//    'domain' => 'https://openapi-test.tianquetech.com',
+//    'org_id' => 'your orgId',
+//    'private_key' => 'your privateKey',
+//    'public_key' => '天阙平台公钥',
+//];
+//$client = AopFactory::client($config);
 
 $request = new UploadRequest();
 $request->setOrgId($config->getOrgId());
