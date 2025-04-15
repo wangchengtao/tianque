@@ -23,7 +23,7 @@ class Signature
         return rtrim($str, '&');
     }
 
-    public static function sign(array $params, $signType, string $privateKey): string
+    public static function sign(array $params, $signType, $privateKey): string
     {
         $str = self::strForSign($params);
 

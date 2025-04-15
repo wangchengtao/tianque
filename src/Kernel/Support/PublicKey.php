@@ -10,7 +10,7 @@ class PublicKey
 
     public function __construct(string $content)
     {
-        $key = openssl_pkey_get_public($content);
+        $key = openssl_pkey_get_public($this->wrap($content));
 
         if ($key === false) {
             throw new TianQueException('公钥非法');
@@ -22,5 +22,10 @@ class PublicKey
     public function getKey()
     {
         return $this->key;
+    }
+
+    private function wrap(string $data): string
+    {
+        return "-----BEGIN PUBLIC KEY-----\n" . chunk_split($data, 64, "\n") . '-----END PUBLIC KEY-----';
     }
 }

@@ -52,7 +52,7 @@ class AopClient
         $apiRequest->setSignType($this->config->getSignType());
         $apiRequest->setTimestamp();
         $apiRequest->setReqData($request);
-        $apiRequest->setSign(Signature::sign($apiRequest->toArray(), $apiRequest->getSignType(), $this->config->getPrivateKey()));
+        $apiRequest->setSign(Signature::sign($apiRequest->toArray(), $apiRequest->getSignType(), $this->config->getPrivateKey()->getKey()));
 
         // 发送请求
         $res = $this->request($request->getMethod(), $request->getUri(), [

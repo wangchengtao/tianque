@@ -2,6 +2,7 @@
 
 namespace Summer\TianQue\Kernel;
 
+use Summer\TianQue\Kernel\Support\PrivateKey;
 use Summer\TianQue\Kernel\Support\PublicKey;
 
 class Config
@@ -10,7 +11,7 @@ class Config
 
     private string $orgId;
 
-    private string $privateKey;
+    private PrivateKey $privateKey;
 
     private PublicKey $publicKey;
 
@@ -20,7 +21,7 @@ class Config
     {
         $this->domain = $domain;
         $this->orgId = $orgId;
-        $this->privateKey = $privateKey;
+        $this->privateKey = new PrivateKey($privateKey);
         $this->publicKey = new PublicKey($publicKey);
         $this->signType = $signType;
     }
@@ -69,9 +70,9 @@ class Config
     }
 
     /**
-     * @return string
+     * @return \Summer\TianQue\Kernel\Support\PrivateKey
      */
-    public function getPrivateKey(): string
+    public function getPrivateKey(): PrivateKey
     {
         return $this->privateKey;
     }
@@ -81,7 +82,7 @@ class Config
      */
     public function setPrivateKey(string $privateKey): void
     {
-        $this->privateKey = $privateKey;
+        $this->privateKey = new PrivateKey($privateKey);
     }
 
     /**
