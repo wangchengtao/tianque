@@ -66,7 +66,7 @@ class UploadRequest extends Request
         $this->pictureType = (string)$pictureType;
     }
 
-    public function getFile(): mixed
+    public function getFile()
     {
         return $this->file;
     }
