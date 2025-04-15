@@ -16,7 +16,7 @@ class UploadRequest extends Request
     /**
      * @var resource file
      */
-    protected mixed $file;
+    protected $file;
 
     /**
      * @return string
