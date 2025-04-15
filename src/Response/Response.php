@@ -3,11 +3,13 @@
 namespace Summer\TianQue\Response;
 
 use ReflectionClass;
+use Summer\TianQue\Kernel\Contract\Arrayable;
 use Summer\TianQue\Kernel\Traits\Constructor;
+use Summer\TianQue\Kernel\Traits\Serializable;
 
-abstract class Response
+abstract class Response implements Arrayable
 {
-    use Constructor;
+    use Constructor, Serializable;
 
     const SUCCESS = '0000';
     const FAIL = '0001';

@@ -6,20 +6,22 @@ use ReflectionClass;
 
 trait Constructor
 {
-    public function __construct(array $params)
+    public function __construct(array $params = [])
     {
-        $reflectionClass = new ReflectionClass($this);
+        if ($params) {
+            $reflectionClass = new ReflectionClass($this);
 
-        foreach ($params as $key => $value) {
-            if ($reflectionClass->hasProperty($key)) {
-                $property = $reflectionClass->getProperty($key);
-                $property->setAccessible(true);
-                $property->setValue($this, $value);
-            }
+            foreach ($params as $key => $value) {
+                if ($reflectionClass->hasProperty($key)) {
+                    $property = $reflectionClass->getProperty($key);
+                    $property->setAccessible(true);
+                    $property->setValue($this, $value);
+                }
 
-            $method = 'set'. ucfirst($key);
-            if (method_exists($this, $method)) {
-                $this->{$method}($value);
+                $method = 'set' . ucfirst($key);
+                if (method_exists($this, $method)) {
+                    $this->{$method}($value);
+                }
             }
         }
     }
