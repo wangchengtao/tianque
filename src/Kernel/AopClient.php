@@ -65,6 +65,7 @@ class AopClient
 
     public function upload(UploadRequest $request): UploadResponse
     {
+        $request->setOrgId($this->config->getOrgId());
         $request->setReqId($this->generator->generate());
 
         $res = $this->request($request->getMethod(), $request->getUri(), [
