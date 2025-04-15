@@ -45,3 +45,6 @@ $request->setFile('http://gips1.baidu.com/it/u=3874647369,3220417986&fm=3028&app
 
 $res = $client->upload($request);
 ```
+
+## TODO
+1. 日志输出
