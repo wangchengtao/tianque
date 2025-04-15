@@ -3,8 +3,6 @@
 namespace Summer\TianQue\Kernel\Support;
 
 
-use OpenSSLAsymmetricKey;
-
 class Signature
 {
 
@@ -38,7 +36,7 @@ class Signature
         return base64_encode($sign);
     }
 
-    public static function verify(array $params, string $sign, string $signType, OpenSSLAsymmetricKey $publicKey): bool
+    public static function verify(array $params, string $sign, string $signType, $publicKey): bool
     {
         $str = self::strForSign($params);
 

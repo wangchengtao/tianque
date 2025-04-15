@@ -2,12 +2,11 @@
 
 namespace Summer\TianQue\Kernel\Support;
 
-use OpenSSLAsymmetricKey;
 use Summer\TianQue\Kernel\Exception\TianQueException;
 
 class PublicKey
 {
-    public OpenSSLAsymmetricKey $key;
+    private $key;
 
     public function __construct(string $content)
     {
@@ -20,7 +19,7 @@ class PublicKey
          $this->key = $key;
     }
     
-    public function getKey(): OpenSSLAsymmetricKey
+    public function getKey()
     {
         return $this->key;
     }
