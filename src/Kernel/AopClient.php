@@ -33,7 +33,12 @@ class AopClient
         $this->generator = new DefaultRandomGenerator();
     }
 
-    public function setGenerator(RandomGenerator $generator)
+    public function getConfig(): Config
+    {
+        return $this->config;
+    }
+
+    public function setGenerator(RandomGenerator $generator): void
     {
         $this->generator = $generator;
     }
