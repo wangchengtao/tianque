@@ -1,6 +1,6 @@
 <?php
 
-namespace Summer\TianQue\Kernel\Trait;
+namespace Summer\TianQue\Kernel\Traits;
 
 use ReflectionClass;
 
@@ -13,6 +13,7 @@ trait Constructor
         foreach ($params as $key => $value) {
             if ($reflectionClass->hasProperty($key)) {
                 $property = $reflectionClass->getProperty($key);
+                $property->setAccessible(true);
                 $property->setValue($this, $value);
             }
 

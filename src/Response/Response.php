@@ -3,7 +3,7 @@
 namespace Summer\TianQue\Response;
 
 use ReflectionClass;
-use Summer\TianQue\Kernel\Trait\Constructor;
+use Summer\TianQue\Kernel\Traits\Constructor;
 
 abstract class Response
 {

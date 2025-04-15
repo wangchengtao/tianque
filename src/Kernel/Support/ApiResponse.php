@@ -3,7 +3,7 @@
 namespace Summer\TianQue\Kernel\Support;
 
 use ReflectionClass;
-use Summer\TianQue\Kernel\Trait\Constructor;
+use Summer\TianQue\Kernel\Traits\Constructor;
 
 class ApiResponse
 {

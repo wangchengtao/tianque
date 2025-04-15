@@ -34,6 +34,7 @@ abstract class Request implements Arrayable
         $reflection = new ReflectionClass($this);
 
         foreach ($reflection->getProperties() as $property) {
+            $property->setAccessible(true);
             $propertyName = $property->getName();
             $propertyValue = $property->getValue($this);
 
