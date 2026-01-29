@@ -19,7 +19,6 @@ class UploadTest extends TestCase
     public function testUpload(): void
     {
         $request = new UploadRequest();
-        $request->setOrgId($this->config->getOrgId());
         $request->setPictureType(86);
         $request->setFile('https://mat.hicootest.com/image/7eK0lCdfQPWHa3DZY0ohrM7v1U0aYzA9FaYGJ16f.png');
 

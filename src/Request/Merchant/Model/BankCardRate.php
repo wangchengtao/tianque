@@ -11,12 +11,22 @@ class BankCardRate implements Arrayable
     /**
      * 21 贷记卡费率；22 借记卡费率；23 借记卡手续费封顶值
      */
-    protected string $type;
+    public string $type;
 
     /**
      * 刷卡费率(%)/封顶费.
      */
-    protected string $rate;
+    public string $rate;
+
+    public function setType(string $type): void
+    {
+        $this->type = $type;
+    }
+
+    public function setRate(string $rate): void
+    {
+        $this->rate = $rate;
+    }
 
     public function toArray(): array
     {

@@ -47,14 +47,6 @@ class AopClient
     public function execute(Request $request): ApiResponse
     {
         // 组装参数 && 签名
-        // $apiRequest = new ApiRequest();
-        // $apiRequest->setOrgId($this->config->getOrgId());
-        // $apiRequest->setReqId($this->generator->generate());
-        // $apiRequest->setSignType($this->config->getSignType());
-        // $apiRequest->setTimestamp();
-        // $apiRequest->setReqData($request);
-        // $apiRequest->setSign(Signature::sign($apiRequest->toArray(), $apiRequest->getSignType(), $this->config->getPrivateKey()->getKey()));
-
         $params = [
             'orgId' => $this->config->getOrgId(),
             'reqId' => $this->generator->generate(),
@@ -77,7 +69,7 @@ class AopClient
 
     public function upload(UploadRequest $request): UploadResponse
     {
-        // $request->setOrgId($this->config->getOrgId());
+        $request->setOrgId($this->config->getOrgId());
         $request->setReqId($this->generator->generate());
 
         $res = $this->request($request->getMethod(), $request->getUri(), [

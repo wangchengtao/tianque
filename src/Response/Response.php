@@ -17,9 +17,9 @@ class Response implements Arrayable
 
     public const FAIL = '0001';
 
-    protected string $bizCode;
+    public string $bizCode;
 
-    protected string $bizMsg;
+    public string $bizMsg;
 
     public function getBizCode(): string
     {

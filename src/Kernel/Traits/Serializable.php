@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Summer\TianQue\Kernel\Traits;
 
 use ReflectionClass;
+use ReflectionProperty;
 use Summer\TianQue\Kernel\Contract\Arrayable;
 
 trait Serializable
@@ -14,7 +15,7 @@ trait Serializable
         $result = [];
         $reflection = new ReflectionClass($this);
 
-        foreach ($reflection->getProperties() as $property) {
+        foreach ($reflection->getProperties(ReflectionProperty::IS_PUBLIC) as $property) {
             $property->setAccessible(true);
 
             if (! $property->isInitialized($this)) {

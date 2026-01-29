@@ -6,18 +6,18 @@ namespace Summer\TianQue\Request;
 
 class UploadRequest extends Request
 {
-    protected string $uri = '/merchant/uploadPicture';
+    public string $orgId;
 
-    protected string $orgId;
+    public string $reqId;
 
-    protected string $reqId;
-
-    protected string $pictureType;
+    public string $pictureType;
 
     /**
      * @var resource file
      */
-    protected $file;
+    public $file;
+
+    protected string $uri = '/merchant/uploadPicture';
 
     public function getOrgId(): string
     {

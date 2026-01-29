@@ -6,9 +6,9 @@ namespace Summer\TianQue\Response;
 
 class UploadResponse extends Response
 {
-    protected string $cdnUrl;
+    public string $cdnUrl;
 
-    protected string $PhotoUrl;
+    public string $PhotoUrl;
 
     public function getCdnUrl(): string
     {

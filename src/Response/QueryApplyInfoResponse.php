@@ -14,25 +14,25 @@ class QueryApplyInfoResponse extends Response
 
     public const CANCELLED = '03'; // 申请取消
 
-    protected string $id;
+    public string $id;
 
-    protected string $applicationType;
+    public string $applicationType;
 
-    protected string $mno;
+    public string $mno;
 
-    protected string $applyStatus;
+    public string $applyStatus;
 
-    protected string $handleExplain;
+    public string $handleExplain;
 
     // --------------------------------------------------- 分时结算申请
 
-    protected string $paymentSet;
+    public string $paymentSet;
 
-    protected string $settTime;
+    public string $settTime;
 
     // ---------------------------------------------------- 账户结算申请
 
-    protected string $accountRatio;
+    public string $accountRatio;
 
     public function getId(): string
     {

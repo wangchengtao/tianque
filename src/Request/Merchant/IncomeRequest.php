@@ -21,8 +21,6 @@ class IncomeRequest extends Request
      */
     public ?string $merName;
 
-    protected string $uri = '/merchant/income';
-
     /**
      * 商户简称.
      *
@@ -30,7 +28,7 @@ class IncomeRequest extends Request
      * 2、不能为纯数字；
      * 3、连锁模式，如要求分店使用统一的签购单名称时，可用商户简称作为区分。
      */
-    protected string $mecDisNm;
+    public string $mecDisNm;
 
     /**
      * 商户联系手机号.
@@ -39,7 +37,7 @@ class IncomeRequest extends Request
      * 2、企业资质商户传入企业联系人电话
      * 3、纯数字
      */
-    protected string $mblNo;
+    public string $mblNo;
 
     /**
      * 经营类型, 枚举值
@@ -51,7 +49,7 @@ class IncomeRequest extends Request
      * 05 保险类
      * 06 私立院校
      */
-    protected string $operationalType;
+    public string $operationalType;
 
     /**
      * 资质类型.
@@ -67,7 +65,7 @@ class IncomeRequest extends Request
      * mecTypeFlag=04（1+n分店）时仅能选自然人；
      * 线上商户需选择03企业/04政府机关/05事业单位/06其他组织；
      */
-    protected string $haveLicenseNo;
+    public string $haveLicenseNo;
 
     /**
      * 商户类型，枚举值
@@ -78,12 +76,12 @@ class IncomeRequest extends Request
      * 02 连锁分店
      * mecTypeFlag == 02（连锁分店）时需校验所属总店mecTypeFlag必须为01 连锁总店
      */
-    protected string $mecTypeFlag;
+    public string $mecTypeFlag;
 
     /**
      * 所属总店商户编号，当mecTypeFlag==04 时必传.
      */
-    protected ?string $parentMno;
+    public ?string $parentMno;
 
     /**
      * 连锁分店是否独立结算，枚举值
@@ -92,7 +90,7 @@ class IncomeRequest extends Request
      * 01 非独立结算
      * 商户类型(mecTypeFlag==02)连锁分店时必传此参数；其他情况传入无效.
      */
-    protected ?string $independentModel;
+    public ?string $independentModel;
 
     /**
      * 线上产品类型，枚举值
@@ -102,18 +100,18 @@ class IncomeRequest extends Request
      * 03 公众号/小程序/服务窗
      * 经营类型为线上(operationalType=='02')时，本字段必填.
      */
-    protected ?string $onlineType;
+    public ?string $onlineType;
 
     /**
      * APP名称/网站网址/公众号/小程序/服务窗名称
      * 经营类型为线上(operationalType=='02')时，本字段必填.
      */
-    protected ?string $onlineName;
+    public ?string $onlineName;
 
     /**
      * APP/网站/公众号/小程序/服务窗下载地址及账号信息.
      */
-    protected ?string $onlineTypeInfo;
+    public ?string $onlineTypeInfo;
 
     /**
      * 注册地址省编码
@@ -121,7 +119,7 @@ class IncomeRequest extends Request
      * 需要与营业执照照面一致；
      * 省、市、区编码、街道地址（四个参数需同时上传）
      */
-    protected ?string $provCd;
+    public ?string $provCd;
 
     /**
      * 注册地址市编码
@@ -129,7 +127,7 @@ class IncomeRequest extends Request
      * 需要与营业执照照面一致；
      * 省、市、区编码、街道地址（四个参数需同时上传）
      */
-    protected ?string $cityCd;
+    public ?string $cityCd;
 
     /**
      * 注册地址区编码
@@ -137,7 +135,7 @@ class IncomeRequest extends Request
      * 需要与营业执照照面一致；
      * 省、市、区编码、街道地址（四个参数需同时上传）
      */
-    protected ?string $distCd;
+    public ?string $distCd;
 
     /**
      * 注册地址街道地址
@@ -145,61 +143,61 @@ class IncomeRequest extends Request
      * 直接填写详细街道门牌号即可；
      * 省、市、区编码、街道地址（四个参数需同时上传）
      */
-    protected ?string $detailAddress;
+    public ?string $detailAddress;
 
     /**
      * 商户实际经营详细地址
      * 直接填写详细街道门牌号即可；.
      */
-    protected string $cprRegAddr;
+    public string $cprRegAddr;
 
     /**
      * 实际经营地址省编码
      */
-    protected string $regProvCd;
+    public string $regProvCd;
 
     /**
      * 实际经营地址市编码
      */
-    protected string $regCityCd;
+    public string $regCityCd;
 
     /**
      * 营业执照注册地址区编码
      */
-    protected string $regDistCd;
+    public string $regDistCd;
 
     /**
      * 经营类目 MCC
      * 请选择正确MCC入网。
      * 参加AT活动（蓝海/微信智慧餐饮/微信高校食堂）的商户，为确保报名成功，请按照上游要求(详见活动报名接口)的MCC进件。
      */
-    protected string $mccCd;
+    public string $mccCd;
 
     /**
      * 客服电话
      * 纯数字.
      */
-    protected string $csTelNo;
+    public string $csTelNo;
 
     /**
      * 邮箱
      * 此字段将上送至微信、支付宝.
      */
-    protected ?string $email;
+    public ?string $email;
 
     // --------------------------------------功能类信息--------------------------------------
 
     /**
      * @var Qrcode[] 二维码费率
      */
-    protected array $qrcodeList;
+    public array $qrcodeList;
 
     /**
      * @var null|BankCardRate[] 刷卡费率
      *
      * 未传入则取机构预设的默认进件费率
      */
-    protected ?array $bankCardRates;
+    public ?array $bankCardRates;
 
     /**
      * 行业规则ID，枚举值
@@ -209,7 +207,7 @@ class IncomeRequest extends Request
      *
      * 仅资质类型为企业/个体户且MCC为《涉及MCC》内的MCC支持传入，不传系统默认 00 标准类
      */
-    protected ?string $businessRule;
+    public ?string $businessRule;
 
     /**
      * 结算类型，枚举值
@@ -219,7 +217,7 @@ class IncomeRequest extends Request
      * 04 D1结算
      * 不传值时，系统会根据合作机构签约时的默认结算产品执行。
      */
-    protected ?string $settleType;
+    public ?string $settleType;
 
     /**
      * 银行卡预授权开关，枚举值
@@ -228,7 +226,7 @@ class IncomeRequest extends Request
      * 01 关闭
      * 02 开通
      */
-    protected ?string $bankCardPreAuthorization;
+    public ?string $bankCardPreAuthorization;
 
     /**
      * 二维码预授权开关，枚举值
@@ -237,21 +235,21 @@ class IncomeRequest extends Request
      * 01 关闭
      * 02 开通
      */
-    protected ?string $qrCodePreAuthorization;
+    public ?string $qrCodePreAuthorization;
 
     /**
      * 指定微信渠道号.
      *
      * 多渠道号情况下使用，进件到指定微信渠道号下
      */
-    protected ?string $specifyWechatChannel;
+    public ?string $specifyWechatChannel;
 
     /**
      * 指定支付宝PID.
      *
      * 多渠道号情况下使用，进件到指定支付宝PID下
      */
-    protected ?string $specifyALiPayChannel;
+    public ?string $specifyALiPayChannel;
 
     /**
      * 回调地址
@@ -259,7 +257,7 @@ class IncomeRequest extends Request
      * 天阙平台支持推送商户入驻审核的终态结果给该地址，推送格式参见接口【入驻审核结果通知】
      * 如果不传，则依赖入驻结果查询接口获取审核最终状态
      */
-    protected ?string $callbackUrl;
+    public ?string $callbackUrl;
 
     /**
      * 复核回调地址
@@ -267,7 +265,7 @@ class IncomeRequest extends Request
      * 天阙平台支持推送商户入驻审核的终态结果给该地址，推送格式参见接口【入驻审核结果通知】
      * 如果不传，则依赖入驻结果查询接口获取审核最终状态
      */
-    protected ?string $checkCallbackUrl;
+    public ?string $checkCallbackUrl;
 
     // --------------------------------------资质证照信息--------------------------------------
 
@@ -276,7 +274,7 @@ class IncomeRequest extends Request
      *
      * 需确保和营业执照照片一致，如果个体户营业执照中没有注册名称或注册名称是*，此处需要按照'个体户+法人姓名'的格式传入。
      */
-    protected ?string $cprRegNmCn;
+    public ?string $cprRegNmCn;
 
     /**
      * 营业执照注册号.
@@ -284,7 +282,7 @@ class IncomeRequest extends Request
      * 营业执照号/统一信用编码。
      * 资质类型为个体户、企业、政府机关、事业单位、其他组织(haveLicenseNo==02/03/04/05/06)时，本字段必填
      */
-    protected ?string $registCode;
+    public ?string $registCode;
 
     /**
      * 是否三证合一，枚举值
@@ -294,17 +292,17 @@ class IncomeRequest extends Request
      * 01 否
      * 资质类型为企业、政府机关、事业单位、其他组织(haveLicenseNo==03/04/05/06)时，本字段必填
      */
-    protected ?string $licenseMatch;
+    public ?string $licenseMatch;
 
     /**
      * 组织机构代码
      */
-    protected ?string $orgCode;
+    public ?string $orgCode;
 
     /**
      * 税务登记号.
      */
-    protected ?string $taxRegNo;
+    public ?string $taxRegNo;
 
     /**
      * 营业执照起始日.
@@ -312,7 +310,7 @@ class IncomeRequest extends Request
      * 格式为: YYYYMMDD
      * 营业执照起始日、营业执照到期日需同时上传
      */
-    protected ?string $businessLicStt;
+    public ?string $businessLicStt;
 
     /**
      * 营业执照到期日.
@@ -321,12 +319,12 @@ class IncomeRequest extends Request
      * 营业执照起始日、营业执照到期日需同时上传
      * 长期有效请传29991231
      */
-    protected ?string $businessLicEnt;
+    public ?string $businessLicEnt;
 
     /**
      * 法人/商户负责人姓名.
      */
-    protected string $identityName;
+    public string $identityName;
 
     /**
      * 法人/商户负责人证件类型，枚举值
@@ -338,18 +336,18 @@ class IncomeRequest extends Request
      * 07 护照
      * 99 其他
      */
-    protected string $identityTyp;
+    public string $identityTyp;
 
     /**
      * 法人/商户负责人证件号.
      */
-    protected string $identityNo;
+    public string $identityNo;
 
     /**
      * 法人/商户负责人证件起始日
      * 格式为: YYYYMMDD.
      */
-    protected ?string $legalPersonLicStt;
+    public ?string $legalPersonLicStt;
 
     /**
      * 法人/商户负责人证件到期日.
@@ -357,7 +355,7 @@ class IncomeRequest extends Request
      * 格式为: YYYYMMDD
      * 长期有效请传29991231
      */
-    protected ?string $legalPersonLicEnt;
+    public ?string $legalPersonLicEnt;
 
     // --------------------------------------结算账户信息--------------------------------------
 
@@ -365,7 +363,7 @@ class IncomeRequest extends Request
      * 结算账户名
      * 自然人商户、线上类商户不允许授权结算。对公结算账户名与注册名没有包含关系时，需上传授权函。
      */
-    protected string $actNm;
+    public string $actNm;
 
     /**
      * 结算账户类型，枚举值
@@ -375,7 +373,7 @@ class IncomeRequest extends Request
      * 01 对私
      * 说明：自然人商户只允许对私结算；线上商户只允许对公结算
      */
-    protected string $actTyp;
+    public string $actTyp;
 
     /**
      * 结算人证件类型，枚举值
@@ -387,61 +385,61 @@ class IncomeRequest extends Request
      * 07 护照
      * 99 其他
      */
-    protected ?string $actNoType;
+    public ?string $actNoType;
 
     /**
      * 结算人证件号
      * 对私结算必传.
      */
-    protected ?string $stmManIdNo;
+    public ?string $stmManIdNo;
 
     /**
      * 结算人证件起始日
      * 格式为: YYYYMMDD.
      */
-    protected ?string $accountLicStt;
+    public ?string $accountLicStt;
 
     /**
      * 结算人证件到期日
      * 格式为: YYYYMMDD
      * 长期有效请传29991231.
      */
-    protected ?string $accountLicEnt;
+    public ?string $accountLicEnt;
 
     /**
      * 结算卡号.
      */
-    protected string $actNo;
+    public string $actNo;
 
     /**
      * 开户银行
      * 如联行行号不传，【开户银行、开户省份、开户城市】即为必传.
      */
-    protected ?string $depoBank;
+    public ?string $depoBank;
 
     /**
      * 开户省份
      * 如联行行号不传，【开户银行、开户省份、开户城市】即为必传.
      */
-    protected ?string $depoProvCd;
+    public ?string $depoProvCd;
 
     /**
      * 开户城市
      * 如联行行号不传，【开户银行、开户省份、开户城市】即为必传.
      */
-    protected ?string $depoCityCd;
+    public ?string $depoCityCd;
 
     /**
      * 开户支行联行号.
      *
      * 对公必传，对私非18大行必传；发卡行是村镇银行、城市商业银行、农村商业银行、其他银行则必传
      */
-    protected ?string $lbnkNo;
+    public ?string $lbnkNo;
 
     /**
      * 开户支行名称.
      */
-    protected ?string $lbnkNm;
+    public ?string $lbnkNm;
 
     // --------------------------------------图片信息--------------------------------------
 
@@ -449,143 +447,143 @@ class IncomeRequest extends Request
      * 营业执照照片地址
      * 个体、企业、政府机关、事业单位、其他组织必传.
      */
-    protected ?string $licensePic;
+    public ?string $licensePic;
 
     /**
      * 税务登记证照片地址
      * 企业、政府机关、事业单位、其他组织非三证合一必传.
      */
-    protected ?string $taxRegistLicensePic;
+    public ?string $taxRegistLicensePic;
 
     /**
      * 组织机构代码证照片地址
      * 企业、政府机关、事业单位、其他组织非三证合一必传.
      */
-    protected ?string $orgCodePic;
+    public ?string $orgCodePic;
 
     /**
      * 法人/商户负责人身份证正面(人像面)照片地址
      */
-    protected string $legalPersonidPositivePic;
+    public string $legalPersonidPositivePic;
 
     /**
      * 法人/商户负责人身份证反面(国徽面)照片地址
      */
-    protected string $legalPersonidOppositePic;
+    public string $legalPersonidOppositePic;
 
     /**
      * 开户许可证照片地址
      * 对公结算必传.
      */
-    protected ?string $openingAccountLicensePic;
+    public ?string $openingAccountLicensePic;
 
     /**
      * 银行卡正面照片地址
      * 对私结算必传.
      */
-    protected ?string $bankCardPositivePic;
+    public ?string $bankCardPositivePic;
 
     /**
      * 银行卡反面照片地址
      */
-    protected ?string $bankCardOppositePic;
+    public ?string $bankCardOppositePic;
 
     /**
      * 结算人身份证正面(人像面)照片地址
      * 对私授权结算必传.
      */
-    protected ?string $settlePersonIdcardPositive;
+    public ?string $settlePersonIdcardPositive;
 
     /**
      * 结算人身份证反面(国徽面)照片地址
      * 对私授权结算必传.
      */
-    protected ?string $settlePersonIdcardOpposite;
+    public ?string $settlePersonIdcardOpposite;
 
     /**
      * 商户协议照片地址
      */
-    protected ?string $merchantAgreementPic;
+    public ?string $merchantAgreementPic;
 
     /**
      * 门头照片地址
      */
-    protected string $storePic;
+    public string $storePic;
 
     /**
      * 真实商户内景照片地址
      */
-    protected string $insideScenePic;
+    public string $insideScenePic;
 
     /**
      * 经营场所(含收银台)照片地址
      */
-    protected ?string $businessPlacePic;
+    public ?string $businessPlacePic;
 
     /**
      * ICP许可证或公众号主体信息截图照片地址
      * 线上网站类、公众号类商户必传
      * 经营类型为线上(operationalType=='02')时，本字段必填.
      */
-    protected ?string $icpLicence;
+    public ?string $icpLicence;
 
     /**
      * 手持身份证(人像面)照片地址
      */
-    protected ?string $handIdcardPic;
+    public ?string $handIdcardPic;
 
     /**
      * 租赁协议一(封面)照片地址
      */
-    protected ?string $leaseAgreementOnePic;
+    public ?string $leaseAgreementOnePic;
 
     /**
      * 租赁协议二(面积、有效期页)照片地址
      */
-    protected ?string $leaseAgreementTwoPic;
+    public ?string $leaseAgreementTwoPic;
 
     /**
      * 租赁协议三(签章页)照片地址
      */
-    protected ?string $leaseAgreementThreePic;
+    public ?string $leaseAgreementThreePic;
 
     /**
      * 其他资料照片1地址
      * 机构跟银行的合作协议关键页或机构银行合作授权函(支付宝非盈利时需上传).
      */
-    protected ?string $otherMaterialPictureOne;
+    public ?string $otherMaterialPictureOne;
 
     /**
      * 其他资料照片2地址
      * 内景照片(支付宝非盈利时需要上传).
      */
-    protected ?string $otherMaterialPictureTwo;
+    public ?string $otherMaterialPictureTwo;
 
     /**
      * 其他资料照片3地址
      * 财务室照片(支付宝非盈利时需上传).
      */
-    protected ?string $otherMaterialPictureThree;
+    public ?string $otherMaterialPictureThree;
 
     /**
      * 其他资料照片4地址
      */
-    protected ?string $otherMaterialPictureFour;
+    public ?string $otherMaterialPictureFour;
 
     /**
      * 其他资料照片5地址
      */
-    protected ?string $otherMaterialPictureFive;
+    public ?string $otherMaterialPictureFive;
 
     /**
      * 代理人签名照片地址
      */
-    protected ?string $agentPersonSignature;
+    public ?string $agentPersonSignature;
 
     /**
      * 确认人签名照片地址
      */
-    protected ?string $confirmPersonSignature;
+    public ?string $confirmPersonSignature;
 
     /**
      * 授权函照片地址
@@ -593,71 +591,73 @@ class IncomeRequest extends Request
      * 非法人对私结算，即结算账户类型为对私结算，且结算人身份证号与法人身份证号不一致时该字段必传非法人结算授权函；
      * 结算账户类型为对公结算，结算账户名与营业执照注册名称不一致时该字段必传对公结算说明函
      */
-    protected ?string $letterOfAuthPic;
+    public ?string $letterOfAuthPic;
 
     /**
      * 统一结算无营业执照说明照片地址
      * 个人资质的连锁分店，如果统一结算，需上传总店对该店情况说明、证明连锁关系.
      */
-    protected ?string $unionSettleWithoutLicense;
+    public ?string $unionSettleWithoutLicense;
 
     /**
      * 社会团体法人证书照片地址
      */
-    protected ?string $societyGroupLegPerPic;
+    public ?string $societyGroupLegPerPic;
 
     /**
      * 基金法人登记证书照片地址
      */
-    protected ?string $foundationLegPerRegPic;
+    public ?string $foundationLegPerRegPic;
 
     /**
      * 办学许可证照片地址
      */
-    protected ?string $schoolLicese;
+    public ?string $schoolLicese;
 
     /**
      * 医疗机构执业许可证照片地址
      */
-    protected ?string $medicalInstitutionLicense;
+    public ?string $medicalInstitutionLicense;
 
     /**
      * 经营保险业务许可证照片地址
      */
-    protected ?string $insuranceLicese;
+    public ?string $insuranceLicese;
 
     /**
      * 保险业务法人等级证书照片地址
      */
-    protected ?string $insuranceLegPerGradePic;
+    public ?string $insuranceLegPerGradePic;
 
     /**
      * 民办教育许可证照片地址
      */
-    protected ?string $privateEducationLicense;
+    public ?string $privateEducationLicense;
 
     /**
      * 收费证明文件照片地址
      */
-    protected ?string $chargeProofPic;
+    public ?string $chargeProofPic;
 
     /**
      * 民办非企业单位登记证书
      * 部分MCC必传，参照特殊费率资质要求0820.xlsx.
      */
-    protected ?string $privateNonEnterprisePic;
+    public ?string $privateNonEnterprisePic;
 
     /**
      * 收费样本文件
      * 部分MCC必传，参照特殊费率资质要求0820.xlsx.
      */
-    protected ?string $feeSimplesPic;
+    public ?string $feeSimplesPic;
 
     /**
      * 卫生局批文
      * 部分MCC必传，参照特殊费率资质要求0820.xlsx.
      */
-    protected ?string $healthBureauApprovalPic;
+    public ?string $healthBureauApprovalPic;
+
+    protected string $uri = '/merchant/income';
 
     public function setMerName(?string $merName): void
     {

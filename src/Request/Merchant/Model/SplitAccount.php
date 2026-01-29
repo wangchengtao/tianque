@@ -11,13 +11,13 @@ use Summer\TianQue\Kernel\Contract\Arrayable;
  */
 class SplitAccount implements Arrayable
 {
-    private string $mno;
+    public string $mno;
 
-    private string $splitCycle = '';
+    public string $splitCycle = '';
 
-    private string $relationShip = '';
+    public string $relationShip = '';
 
-    private string $scenes = '';
+    public string $scenes = '';
 
     public function setMno(string $mno): void
     {

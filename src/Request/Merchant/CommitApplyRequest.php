@@ -13,53 +13,53 @@ class CommitApplyRequest extends Request
 
     public const SPLIT = '2'; // 分账
 
-    protected string $uri = '/merchant/specialApplication/commitApply';
+    public string $applicationType;
 
-    protected string $applicationType;
+    public string $mno;
 
-    protected string $mno;
-
-    protected ?string $callbackUrl;
+    public ?string $callbackUrl;
 
     // -------------------------------------------------------------- 分时结算申请
 
-    protected ?string $paymentSet;
+    public ?string $paymentSet;
 
-    protected ?string $settTime;
+    public ?string $settTime;
 
-    protected ?string $settleAccount;
+    public ?string $settleAccount;
 
-    protected ?string $licensePictureUrl;
+    public ?string $licensePictureUrl;
 
-    protected ?string $assistPictureUrlStr;
+    public ?string $assistPictureUrlStr;
 
-    protected ?string $operaReason;
+    public ?string $operaReason;
 
     // -------------------------------------------------------------- 订单分账申请
 
-    protected ?string $accountRatio;
-    
+    public ?string $accountRatio;
+
     /**
      * @var array<SplitAccount>
      */
-    protected ?array $splitAccounts;
+    public ?array $splitAccounts;
 
     /**
      * @var array<string>
      */
-    protected ?array $agreementPicStr;
+    public ?array $agreementPicStr;
 
     /**
      * @var array<string>
      */
-    protected ?array $scenesPicStr;
+    public ?array $scenesPicStr;
 
     /**
      * @var array<string>
      */
-    protected ?array $otherPicStr;
+    public ?array $otherPicStr;
 
-    protected ?string $remark;
+    public ?string $remark;
+
+    protected string $uri = '/merchant/specialApplication/commitApply';
 
     public function setApplicationType(string $applicationType): void
     {
