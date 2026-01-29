@@ -1,7 +1,11 @@
 天阙开放平台 SDK
 
-## Install
-`composer require wangchengtao/tianque`
+## 主要目的
+1. 集成 Composer
+2. 编码风格遵循 PSR-12
+3. 单元测试
+4. 框架集成
+5. 补充 PHPDoc
 
 ## Version Guidance
 
@@ -10,15 +14,25 @@
 | 7.x     | \>=7.4,<8.0 |
 | main    | \>=8.0      |
 
-## Usage
+## 安装
+```bash
+composer require wangchengtao/tianque
+```
+
+For laravael 10+
+```bash
+composer require wangchengtao/laravel-tianque
+```
+
+## 如何使用
 - Notes: More Usages please refer to test cases
 
-图片上传
 ```php
-
 use Summer\TianQue\Kernel\AopClient;
-use Summer\TianQue\Kernel\AopFactory;
 use Summer\TianQue\Kernel\Config;
+use Summer\TianQue\Kernel\AopFactory;
+use Summer\TianQue\Kernel\RequestFactory;
+use Summer\TianQue\Request\Merchant\QueryApplyInfoRequest;
 
 $config = new Config(
     'https://openapi-test.tianquetech.com',
@@ -31,20 +45,33 @@ $client = new AopClient($config);
 
 // or get client by factory
 //$config = [
-//    'domain' => 'https://openapi-test.tianquetech.com',
-//    'org_id' => 'your orgId',
-//    'private_key' => 'your privateKey',
-//    'public_key' => '天阙平台公钥',
+//   'domain' => 'https://openapi-test.tianquetech.com',
+//   'org_id' => 'your orgId',
+//   'private_key' => 'your privateKey',
+//   'public_key' => '天阙平台公钥',
 //];
 //$client = AopFactory::client($config);
 
-$request = new UploadRequest();
-$request->setOrgId($config->getOrgId());
-$request->setPictureType(86);
-$request->setFile('http://gips1.baidu.com/it/u=3874647369,3220417986&fm=3028&app=3028&f=JPEG&fmt=auto?w=720&h=1280');
+// 自定义 reqId 须实现 GeneratorInterface 接口
+//$client->setGenerator(CustomRandomGenerator::class);
 
-$res = $client->upload($request);
+
+$request = new QueryApplyInfoRequest();
+$request->setId('123');
+
+// or init through __construct
+//$request = new QueryApplyInfoRequest(['id' => '123']);
+
+// or use factory
+//$request = RequestFactory::create('POST', '/merchant/specialApplication/queryApplyInfo', [
+//   'id' => '123',
+//]);
+
+$res = $client->execute($request);
 ```
 
-## TODO
-1. 日志输出
+## 测试
+- `./vendor/bin/phpunit`
+
+## 扩展
+1. 添加更多请求对象 须继承 `Summer\TianQue\Request\Request`, 推荐使用工厂创建请求对象

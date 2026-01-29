@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Summer\TianQue\Kernel\Support;
 
-use ReflectionClass;
+use InvalidArgumentException;
+use Summer\TianQue\Kernel\Exception\TianQueException;
 use Summer\TianQue\Kernel\Traits\Constructor;
 
 class ApiResponse
 {
     use Constructor;
 
-    const SUCCESS = '0000';
-
+    public const SUCCESS = '0000';
 
     protected string $code;
 
@@ -26,61 +28,64 @@ class ApiResponse
 
     protected ?string $sign;
 
-    /**
-     * @return string
-     */
     public function getCode(): string
     {
         return $this->code;
     }
 
-    /**
-     * @return string
-     */
     public function getMsg(): string
     {
         return $this->msg;
     }
 
-    /**
-     * @return string
-     */
     public function getOrgId(): string
     {
         return $this->orgId;
     }
 
-    /**
-     * @return string
-     */
     public function getReqId(): string
     {
         return $this->reqId;
     }
 
     /**
-     * @return array
+     * @return array|string
      */
-    public function getRespData(): array
+    public function getRespData(?string $key = null)
     {
+        if ($key) {
+            if (array_key_exists($key, $this->respData)) {
+                return $this->respData[$key];
+            }
+
+            throw new TianQueException('Invalid key: ' . $key);
+        }
+
         return $this->respData;
     }
 
-    /**
-     * @return string
-     */
     public function getSignType(): string
     {
         return $this->signType;
     }
 
-    /**
-     * @return string
-     */
     public function getSign(): string
     {
         return $this->sign;
     }
 
+    /**
+     * @template T of \Summer\TianQue\Response\Response
+     *
+     * @param class-string<T> $class 目标类名
+     * @return T
+     */
+    public function to(string $class)
+    {
+        if (! class_exists($class)) {
+            throw new InvalidArgumentException(sprintf('Class %s not exists', $class));
+        }
 
+        return new $class($this->respData);
+    }
 }

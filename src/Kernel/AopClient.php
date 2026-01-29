@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Summer\TianQue\Kernel;
 
 use GuzzleHttp\Client;
@@ -7,7 +9,6 @@ use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use Summer\TianQue\Kernel\Contract\RandomGenerator;
 use Summer\TianQue\Kernel\Exception\TianQueException;
-use Summer\TianQue\Kernel\Support\ApiRequest;
 use Summer\TianQue\Kernel\Support\ApiResponse;
 use Summer\TianQue\Kernel\Support\DefaultRandomGenerator;
 use Summer\TianQue\Kernel\Support\Signature;
@@ -46,17 +47,28 @@ class AopClient
     public function execute(Request $request): ApiResponse
     {
         // 组装参数 && 签名
-        $apiRequest = new ApiRequest();
-        $apiRequest->setOrgId($this->config->getOrgId());
-        $apiRequest->setReqId($this->generator->generate());
-        $apiRequest->setSignType($this->config->getSignType());
-        $apiRequest->setTimestamp();
-        $apiRequest->setReqData($request);
-        $apiRequest->setSign(Signature::sign($apiRequest->toArray(), $apiRequest->getSignType(), $this->config->getPrivateKey()->getKey()));
+        // $apiRequest = new ApiRequest();
+        // $apiRequest->setOrgId($this->config->getOrgId());
+        // $apiRequest->setReqId($this->generator->generate());
+        // $apiRequest->setSignType($this->config->getSignType());
+        // $apiRequest->setTimestamp();
+        // $apiRequest->setReqData($request);
+        // $apiRequest->setSign(Signature::sign($apiRequest->toArray(), $apiRequest->getSignType(), $this->config->getPrivateKey()->getKey()));
+
+        $params = [
+            'orgId' => $this->config->getOrgId(),
+            'reqId' => $this->generator->generate(),
+            'reqData' => $request->toArray(),
+            'timestamp' => date('YmdHis'),
+            'signType' => $this->config->getSignType(),
+            'version' => $this->config->getVersion(),
+        ];
+
+        $params['sign'] = Signature::sign($params, $this->config->getSignType(), $this->config->getPrivateKey()->getKey());
 
         // 发送请求
         $res = $this->request($request->getMethod(), $request->getUri(), [
-            RequestOptions::JSON => $apiRequest->toArray(true),
+            RequestOptions::JSON => $params,
         ]);
 
         // 验签 && 处理结果
@@ -65,7 +77,7 @@ class AopClient
 
     public function upload(UploadRequest $request): UploadResponse
     {
-        $request->setOrgId($this->config->getOrgId());
+        // $request->setOrgId($this->config->getOrgId());
         $request->setReqId($this->generator->generate());
 
         $res = $this->request($request->getMethod(), $request->getUri(), [
@@ -98,7 +110,7 @@ class AopClient
     protected function handleResponse(ResponseInterface $response): array
     {
         if ($response->getStatusCode() !== 200) {
-            throw new TianQueException('请求失败'. $response->getStatusCode());
+            throw new TianQueException('请求失败' . $response->getStatusCode());
         }
 
         $body = json_decode($response->getBody()->getContents(), true);

@@ -1,11 +1,11 @@
 <?php
 
-namespace Summer\TianQue\Kernel\Support;
+declare(strict_types=1);
 
+namespace Summer\TianQue\Kernel\Support;
 
 class Signature
 {
-
     public static function strForSign(array $params): string
     {
         unset($params['sign']);
@@ -23,7 +23,7 @@ class Signature
         return rtrim($str, '&');
     }
 
-    public static function sign(array $params, $signType, $privateKey): string
+    public static function sign(array $params, string $signType, $privateKey): string
     {
         $str = self::strForSign($params);
 
@@ -46,7 +46,4 @@ class Signature
 
         return openssl_verify($str, base64_decode($sign), $publicKey) === 1;
     }
-
-
-
 }

@@ -1,11 +1,13 @@
 <?php
 
-namespace Summer\TianQue\Request\Model;
+declare(strict_types=1);
+
+namespace Summer\TianQue\Request\Merchant\Model;
 
 use Summer\TianQue\Kernel\Contract\Arrayable;
 
 /**
- * 分账接收方
+ * 分账接收方.
  */
 class SplitAccount implements Arrayable
 {
@@ -17,33 +19,21 @@ class SplitAccount implements Arrayable
 
     private string $scenes = '';
 
-    /**
-     * @param string $mno
-     */
     public function setMno(string $mno): void
     {
         $this->mno = $mno;
     }
 
-    /**
-     * @param string $splitCycle
-     */
     public function setSplitCycle(string $splitCycle): void
     {
         $this->splitCycle = $splitCycle;
     }
 
-    /**
-     * @param string $relationShip
-     */
     public function setRelationShip(string $relationShip): void
     {
         $this->relationShip = $relationShip;
     }
 
-    /**
-     * @param string $scenes
-     */
     public function setScenes(string $scenes): void
     {
         $this->scenes = $scenes;

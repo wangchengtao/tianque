@@ -1,33 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Summer\TianQue\Response;
 
 use Summer\TianQue\Kernel\Contract\Arrayable;
 use Summer\TianQue\Kernel\Traits\Constructor;
 use Summer\TianQue\Kernel\Traits\Serializable;
 
-abstract class Response implements Arrayable
+class Response implements Arrayable
 {
-    use Constructor, Serializable;
+    use Constructor;
+    use Serializable;
 
-    const SUCCESS = '0000';
-    const FAIL = '0001';
+    public const SUCCESS = '0000';
+
+    public const FAIL = '0001';
 
     protected string $bizCode;
 
     protected string $bizMsg;
 
-    /**
-     * @return string
-     */
     public function getBizCode(): string
     {
         return $this->bizCode;
     }
 
-    /**
-     * @return string
-     */
     public function getBizMsg(): string
     {
         return $this->bizMsg;

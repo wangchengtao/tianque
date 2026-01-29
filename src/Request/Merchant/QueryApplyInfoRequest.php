@@ -1,7 +1,10 @@
 <?php
 
-namespace Summer\TianQue\Request;
+declare(strict_types=1);
 
+namespace Summer\TianQue\Request\Merchant;
+
+use Summer\TianQue\Request\Request;
 
 class QueryApplyInfoRequest extends Request
 {
@@ -12,14 +15,8 @@ class QueryApplyInfoRequest extends Request
      */
     protected string $id;
 
-    /**
-     * @param string $id
-     */
     public function setId(string $id): void
     {
         $this->id = $id;
     }
-
-
-
 }

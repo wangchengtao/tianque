@@ -1,7 +1,8 @@
 <?php
 
-namespace Summer\TianQue\Request;
+declare(strict_types=1);
 
+namespace Summer\TianQue\Request;
 
 class UploadRequest extends Request
 {
@@ -18,52 +19,34 @@ class UploadRequest extends Request
      */
     protected $file;
 
-    /**
-     * @return string
-     */
     public function getOrgId(): string
     {
         return $this->orgId;
     }
 
-    /**
-     * @param string $orgId
-     */
     public function setOrgId(string $orgId): void
     {
         $this->orgId = $orgId;
     }
 
-    /**
-     * @return string
-     */
     public function getReqId(): string
     {
         return $this->reqId;
     }
 
-    /**
-     * @param string $reqId
-     */
     public function setReqId(string $reqId): void
     {
         $this->reqId = $reqId;
     }
 
-    /**
-     * @return string
-     */
     public function getPictureType(): string
     {
         return $this->pictureType;
     }
 
-    /**
-     * @param int $pictureType
-     */
     public function setPictureType(int $pictureType): void
     {
-        $this->pictureType = (string)$pictureType;
+        $this->pictureType = (string) $pictureType;
     }
 
     public function getFile()
@@ -86,7 +69,5 @@ class UploadRequest extends Request
                 'contents' => $value,
             ];
         }, array_keys($arr), array_values($arr));
-
     }
-
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Summer\TianQue\Response;
 
 class UploadResponse extends Response
@@ -8,21 +10,13 @@ class UploadResponse extends Response
 
     protected string $PhotoUrl;
 
-    /**
-     * @return string
-     */
     public function getCdnUrl(): string
     {
         return $this->cdnUrl;
     }
 
-    /**
-     * @return string
-     */
     public function getPhotoUrl(): string
     {
         return $this->PhotoUrl;
     }
-
-
 }

@@ -1,7 +1,11 @@
 {
     "name": "wangchengtao/tianque",
     "description": "天阙开放平台 SDK",
+    "keywords": [
+        "tianque", "sdk"
+    ],
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "wangchengtao",
@@ -10,10 +14,12 @@
     ],
     "require": {
         "php": ">=7.4",
+        "ext-openssl": "*",
         "guzzlehttp/guzzle": "^7.5"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.6"
+        "phpunit/phpunit": "^9.6",
+        "friendsofphp/php-cs-fixer": "^3.0"
     },
     "autoload": {
         "psr-4": {
@@ -24,5 +30,12 @@
         "psr-4": {
             "Summer\\TianQue\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "git config core.hooksPath .githooks || true",
+            "chmod +x .githooks/pre-commit || true"
+        ],
+        "cs": "php-cs-fixer fix $1"
     }
 }

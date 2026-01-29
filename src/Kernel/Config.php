@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Summer\TianQue\Kernel;
 
 use Summer\TianQue\Kernel\Support\PrivateKey;
@@ -17,13 +19,16 @@ class Config
 
     private string $signType;
 
-    public function __construct(string $domain, string $orgId, string $privateKey, string $publicKey, string $signType = 'RSA')
+    private string $version;
+
+    public function __construct(string $domain, string $orgId, string $privateKey, string $publicKey, string $signType = 'RSA', string $version = '1.0')
     {
         $this->domain = $domain;
         $this->orgId = $orgId;
         $this->privateKey = new PrivateKey($privateKey);
         $this->publicKey = new PublicKey($publicKey);
         $this->signType = $signType;
+        $this->version = $version;
     }
 
     public static function fromArray(array $config): Config
@@ -37,85 +42,63 @@ class Config
         );
     }
 
-    /**
-     * @return string
-     */
     public function getDomain(): string
     {
         return $this->domain;
     }
 
-    /**
-     * @param string $domain
-     */
     public function setDomain(string $domain): void
     {
         $this->domain = $domain;
     }
 
-    /**
-     * @return string
-     */
     public function getOrgId(): string
     {
         return $this->orgId;
     }
 
-    /**
-     * @param string $orgId
-     */
     public function setOrgId(string $orgId): void
     {
         $this->orgId = $orgId;
     }
 
-    /**
-     * @return \Summer\TianQue\Kernel\Support\PrivateKey
-     */
     public function getPrivateKey(): PrivateKey
     {
         return $this->privateKey;
     }
 
-    /**
-     * @param string $privateKey
-     */
     public function setPrivateKey(string $privateKey): void
     {
         $this->privateKey = new PrivateKey($privateKey);
     }
 
-    /**
-     * @return \Summer\TianQue\Kernel\Support\PublicKey
-     */
     public function getPublicKey(): PublicKey
     {
         return $this->publicKey;
     }
-
 
     public function setPublicKey(string $publicKey): void
     {
         $this->publicKey = new PublicKey($publicKey);
     }
 
-    /**
-     * @return string
-     */
     public function getSignType(): string
     {
         return $this->signType;
     }
 
-    /**
-     * @param string $signType
-     */
     public function setSignType(string $signType): void
     {
         $this->signType = $signType;
     }
 
+    public function getVersion(): string
+    {
+        return $this->version;
+    }
 
-
-
+    public function setVersion(string $version): void
+    {
+        $this->version = $version;
+    }
 }

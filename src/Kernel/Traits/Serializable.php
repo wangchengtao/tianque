@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Summer\TianQue\Kernel\Traits;
 
 use ReflectionClass;
@@ -14,14 +16,25 @@ trait Serializable
 
         foreach ($reflection->getProperties() as $property) {
             $property->setAccessible(true);
-            $propertyName = $property->getName();
-            $propertyValue = $property->getValue($this);
 
-            if (empty($propertyValue)) {
+            if (! $property->isInitialized($this)) {
                 continue;
             }
 
-            $result[$propertyName] = is_array($propertyValue) ? $this->map($propertyValue) : $propertyValue;
+            $propertyName = $property->getName();
+            $propertyValue = $property->getValue($this);
+
+            if (is_null($propertyValue)) {
+                continue;
+            }
+
+            if (is_array($propertyValue)) {
+                $result[$propertyName] = $this->map($propertyValue);
+            } elseif ($propertyValue instanceof Arrayable) {
+                $result[$propertyName] = $propertyValue->toArray();
+            } else {
+                $result[$propertyName] = $propertyValue;
+            }
         }
 
         return $result;
@@ -30,6 +43,10 @@ trait Serializable
     protected function map(array $properties)
     {
         return array_map(function ($item) {
+            if (is_array($item)) {
+                return $this->map($item);
+            }
+
             if ($item instanceof Arrayable) {
                 return $item->toArray();
             }
