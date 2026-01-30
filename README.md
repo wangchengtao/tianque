@@ -8,18 +8,14 @@
 5. 补充 PHPDoc
 
 ## Version Guidance
-
-| Version | PHP Version |
-|---------|-------------|
-| 7.x     | \>=7.4,<8.0 |
-| main    | \>=8.0      |
+- php >=7.4
 
 ## 安装
 ```bash
 composer require wangchengtao/tianque
 ```
 
-For laravael 10+
+For laravel 6+
 ```bash
 composer require wangchengtao/laravel-tianque
 ```
