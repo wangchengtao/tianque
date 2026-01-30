@@ -39,9 +39,10 @@ class AopClient
         return $this->config;
     }
 
-    public function setGenerator(RandomGenerator $generator): void
+    public function setGenerator(RandomGenerator $generator): AopClient
     {
         $this->generator = $generator;
+        return $this;
     }
 
     public function execute(Request $request): ApiResponse
