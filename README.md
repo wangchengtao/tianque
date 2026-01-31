@@ -65,6 +65,8 @@ $request->setId('123');
 //]);
 
 $res = $client->execute($request);
+
+var_dump($res->getRespData());
 ```
 
 ## 测试
