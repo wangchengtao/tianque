@@ -66,6 +66,7 @@ $request->setId('123');
 
 $res = $client->execute($request);
 
+var_dump($res->getCode());
 var_dump($res->getRespData());
 ```
 
