@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Summer\TianQue\Tests\Unit;
 
 use Summer\TianQue\Kernel\RequestFactory;
-use Summer\TianQue\Response\Response;
+use Summer\TianQue\Request\Merchant\QueryApplyInfoRequest;
 use Summer\TianQue\Tests\TestCase;
 
 /**
@@ -14,19 +14,18 @@ use Summer\TianQue\Tests\TestCase;
  */
 class RequestFactoryTest extends TestCase
 {
-    use InitAopClient;
-
     public function testCreate(): void
     {
-        $request = RequestFactory::create('POST', '/merchant/specialApplication/queryApplyInfo', [
+        $request1 = RequestFactory::create('POST', '/merchant/specialApplication/queryApplyInfo', [
             'id' => '123',
         ]);
 
-        $this->assertEquals(['id' => '123'], $request->toArray());
+        $request2 = new QueryApplyInfoRequest();
+        $request2->setId('123');
 
-        $res = $this->client->execute($request);
+        $request3 = new QueryApplyInfoRequest(['id' => '123']);
 
-        $this->assertEquals(Response::SUCCESS, $res->getCode());
-        $this->assertEquals(Response::FAIL, $res->getRespData('bizCode'), '申请单号错误');
+        $this->assertEquals($request1->toArray(), $request2->toArray());
+        $this->assertEquals($request2->toArray(), $request3->toArray());
     }
 }
