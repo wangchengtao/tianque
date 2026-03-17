@@ -14,15 +14,28 @@ trait Constructor
             $reflectionClass = new ReflectionClass($this);
 
             foreach ($params as $key => $value) {
-                if ($reflectionClass->hasProperty($key)) {
-                    $property = $reflectionClass->getProperty($key);
-                    $property->setAccessible(true);
-                    $property->setValue($this, $value);
-                }
-
                 $method = 'set' . ucfirst($key);
                 if (method_exists($this, $method)) {
                     $this->{$method}($value);
+                    continue;
+                }
+
+                if ($reflectionClass->hasProperty($key)) {
+                    $property = $reflectionClass->getProperty($key);
+
+                    if ($property->isPublic()) {
+                        $type = $property->getType();
+
+                        if ($type->isBuiltin()) {
+                            $property->setValue($this, $value);
+                        } else {
+                            // 复杂对象
+                            $className = $type->getName();
+                            if (class_exists($className)) {
+                                $property->setValue($this, new $className($value));
+                            }
+                        }
+                    }
                 }
             }
         }

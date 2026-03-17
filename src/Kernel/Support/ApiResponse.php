@@ -14,19 +14,19 @@ class ApiResponse
 
     public const SUCCESS = '0000';
 
-    protected string $code;
+    public string $code;
 
-    protected string $msg;
+    public string $msg;
 
-    protected string $orgId;
+    public string $orgId;
 
-    protected string $reqId;
+    public string $reqId;
 
-    protected array $respData;
+    public array $respData;
 
-    protected ?string $signType;
+    public ?string $signType;
 
-    protected ?string $sign;
+    public ?string $sign;
 
     public function getCode(): string
     {

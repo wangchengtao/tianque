@@ -6,6 +6,9 @@ namespace Summer\TianQue\Request\Merchant;
 
 use Summer\TianQue\Request\Request;
 
+/**
+ * 合作伙伴可以通过此接口查询申请单状态及信息。
+ */
 class QueryApplyInfoRequest extends Request
 {
     /**

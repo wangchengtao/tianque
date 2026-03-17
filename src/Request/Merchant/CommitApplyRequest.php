@@ -7,6 +7,13 @@ namespace Summer\TianQue\Request\Merchant;
 use Summer\TianQue\Request\Merchant\Model\SplitAccount;
 use Summer\TianQue\Request\Request;
 
+/**
+ * 商户如有特殊申请可通过此接口进行提交。
+ * 分时结算申请：
+ * 商户默认的结算方式为每日0点结算前一日交易，若商户经营时段跨0点，可通过此接口申请设置分时结算时间。
+ * 订单分账申请：
+ * 商户开通订单分账需进行审批，请您准备好审批材料后进行分账申请。
+ */
 class CommitApplyRequest extends Request
 {
     public const SETTLEMENT = '1'; // 分时结算
