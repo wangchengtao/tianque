@@ -9,7 +9,7 @@ namespace Summer\TianQue\Request;
  *
  * 合作方系统可以通过调用本接口以订单维度执行分账。
  */
-class LaunchLedger extends Request
+class LaunchLedgerRequest extends Request
 {
     /**
      * 分账出款商户编号.

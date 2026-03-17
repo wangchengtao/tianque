@@ -11,7 +11,7 @@ use Summer\TianQue\Request\Request;
  *
  * 合作方系统可以通过调用本接口查询分账协议签署结果。
  */
-class QuerySignContract extends Request
+class QuerySignContractRequest extends Request
 {
     /**
      * 商户编号.

@@ -14,7 +14,7 @@ use Summer\TianQue\Request\Request;
  * 当签署过分账协议的个体户/企业类商户注册名称发生变更，或小微商户升级为普通商户时，需重新签署分账协议。
  * 选择线下签约时必须上送线下分账协议，提交后天阙侧进行审核，审核通过即视为商户完成签约（实时生效）。
  */
-class GetSignUrl extends Request
+class GetSignUrlRequest extends Request
 {
     public string $mno;
 
