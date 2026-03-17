@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Summer\TianQue\Request;
 
+use Summer\TianQue\Request\Merchant\Model\LedgerRule;
+
 /**
  * 订单分账.
  *
@@ -44,6 +46,8 @@ class LaunchLedgerRequest extends Request
      * 单次分账: ledgerAccountFlag='01'时必传
      * 多次分账：ledgerAccountFlag='00'时非必传，若未传入则直接解冻资金
      * 多次分账：ledgerAccountFlag='01'时必传，若传入则本次分账执行后剩余资金保持冻结.
+     *
+     * @var array<LedgerRule>
      */
     public ?array $ledgerRule;
 
