@@ -45,6 +45,9 @@ class AopClient
         return $this;
     }
 
+    /**
+     * @throws TianQueException
+     */
     public function execute(Request $request): ApiResponse
     {
         // 组装参数 && 签名
@@ -100,6 +103,9 @@ class AopClient
         return $this->client->request($method, $uri, $options);
     }
 
+    /**
+     * @throws TianQueException
+     */
     protected function handleResponse(ResponseInterface $response): array
     {
         if ($response->getStatusCode() !== 200) {
@@ -115,6 +121,9 @@ class AopClient
         return $body;
     }
 
+    /**
+     * @throws TianQueException
+     */
     protected function handleBusiness(array $body): ApiResponse
     {
         $apiResponse = new ApiResponse($body);
