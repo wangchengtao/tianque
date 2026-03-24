@@ -16,8 +16,6 @@ trait Serializable
         $reflection = new ReflectionClass($this);
 
         foreach ($reflection->getProperties(ReflectionProperty::IS_PUBLIC) as $property) {
-            $property->setAccessible(true);
-
             if (! $property->isInitialized($this)) {
                 continue;
             }

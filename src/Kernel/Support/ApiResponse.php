@@ -7,10 +7,12 @@ namespace Summer\TianQue\Kernel\Support;
 use InvalidArgumentException;
 use Summer\TianQue\Kernel\Exception\TianQueException;
 use Summer\TianQue\Kernel\Traits\Constructor;
+use Summer\TianQue\Kernel\Traits\Serializable;
 
 class ApiResponse
 {
     use Constructor;
+    use Serializable;
 
     public const SUCCESS = '0000';
 
