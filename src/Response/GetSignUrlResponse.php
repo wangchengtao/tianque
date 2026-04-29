@@ -9,5 +9,5 @@ class GetSignUrlResponse extends Response
     /**
      * 签约链接地址
      */
-    public ?string $url;
+    public ?string $retUrl;
 }
