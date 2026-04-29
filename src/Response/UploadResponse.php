@@ -8,7 +8,7 @@ class UploadResponse extends Response
 {
     public string $cdnUrl;
 
-    public string $photoUrl;
+    public string $PhotoUrl;
 
     public function getCdnUrl(): string
     {
@@ -17,6 +17,6 @@ class UploadResponse extends Response
 
     public function getPhotoUrl(): string
     {
-        return $this->photoUrl;
+        return $this->PhotoUrl;
     }
 }
