@@ -49,20 +49,11 @@ class CommitApplyRequest extends Request
      */
     public ?array $splitAccounts;
 
-    /**
-     * @var array<string>
-     */
-    public ?array $agreementPicStr;
+    public ?string $agreementPicStr;
 
-    /**
-     * @var array<string>
-     */
-    public ?array $scenesPicStr;
+    public ?string $scenesPicStr;
 
-    /**
-     * @var array<string>
-     */
-    public ?array $otherPicStr;
+    public ?string $otherPicStr;
 
     public ?string $remark;
 
@@ -125,17 +116,17 @@ class CommitApplyRequest extends Request
 
     public function setAgreementPicStr(array $agreementPicStr): void
     {
-        $this->agreementPicStr = $agreementPicStr;
+        $this->agreementPicStr = implode(',', $agreementPicStr);
     }
 
     public function setScenesPicStr(array $scenesPicStr): void
     {
-        $this->scenesPicStr = $scenesPicStr;
+        $this->scenesPicStr = implode(',', $scenesPicStr);
     }
 
     public function setOtherPicStr(array $otherPicStr): void
     {
-        $this->otherPicStr = $otherPicStr;
+        $this->otherPicStr = implode(',', $otherPicStr);
     }
 
     public function setRemark(string $remark): void
