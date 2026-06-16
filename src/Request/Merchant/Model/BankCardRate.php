@@ -9,7 +9,13 @@ use Summer\TianQue\Kernel\Contract\Arrayable;
 class BankCardRate implements Arrayable
 {
     /**
-     * 21 贷记卡费率；22 借记卡费率；23 借记卡手续费封顶值
+     * 费率类型.
+     *
+     * 21 贷记卡费率
+     * 22 借记卡费率
+     * 23 借记卡手续费封顶值
+     * 24 手机闪付贷记卡费率
+     * 25 手机闪付借记卡费率
      */
     public string $type;
 
