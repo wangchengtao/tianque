@@ -44,9 +44,9 @@ class UploadRequest extends Request
         return $this->pictureType;
     }
 
-    public function setPictureType(int $pictureType): void
+    public function setPictureType(string $pictureType): void
     {
-        $this->pictureType = (string) $pictureType;
+        $this->pictureType = $pictureType;
     }
 
     public function getFile()
